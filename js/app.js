@@ -15,6 +15,9 @@ $(document).ready(function(){
   	var pageClone = $("html").clone();
   	var y=0;
 
+  	/*--- Make array---*/
+  	var numberArray = [];
+
 	/*--- New Game ---*/
 	$(".new").click(function(){
 		$("html").html(pageClone);
@@ -32,11 +35,30 @@ $(document).ready(function(){
 		e.preventDefault();
 		y = $(".text").val();
 		console.log(y);
+
+		var yesNo="";
+		
+		for (var i = 0; i < numberArray.length; i++) {
+			console.log(numberArray);
+			if (numberArray[i]==y){
+			alert("You've already entered this number");
+			yesNo = "True";
+			};
+
+		};
+		
+		if (isNaN(y)){
+			alert("Please enter a numerical value");
+		}
+
+		else if (yesNo == ""){
+		numberArray.push(y);
 		guessIfs(x,y);
 		counter++;
 		$("#count").html(counter);
 		console.log(counter);
 		$("#guessList").append("<li>"+y+"</li>");
+		};
 	});
 
 	/*--- Compare x and y ---*/
